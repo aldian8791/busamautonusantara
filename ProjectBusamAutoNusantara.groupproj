@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1D939C62-E56D-4BBE-B6B4-25314D02F503}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ClientDesktop\BusamAutoNusantara.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CrossEncryption\EnCrypt_DeCrypt.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BusamAutoNusantara">
+        <MSBuild Projects="ClientDesktop\BusamAutoNusantara.dproj"/>
+    </Target>
+    <Target Name="BusamAutoNusantara:Clean">
+        <MSBuild Projects="ClientDesktop\BusamAutoNusantara.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BusamAutoNusantara:Make">
+        <MSBuild Projects="ClientDesktop\BusamAutoNusantara.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="EnCrypt_DeCrypt">
+        <MSBuild Projects="CrossEncryption\EnCrypt_DeCrypt.dproj"/>
+    </Target>
+    <Target Name="EnCrypt_DeCrypt:Clean">
+        <MSBuild Projects="CrossEncryption\EnCrypt_DeCrypt.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="EnCrypt_DeCrypt:Make">
+        <MSBuild Projects="CrossEncryption\EnCrypt_DeCrypt.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BusamAutoNusantara;EnCrypt_DeCrypt"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BusamAutoNusantara:Clean;EnCrypt_DeCrypt:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BusamAutoNusantara:Make;EnCrypt_DeCrypt:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,0 +1,272 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'EnCrypt/DeCrypt'
+  ClientHeight = 335
+  ClientWidth = 478
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object grbAesSQLite: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 465.000000000000000000
+    Size.Height = 79.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'AES DataBase SQLIte'
+    TabOrder = 0
+    object btnBrowseAesSQLiteDec: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 49.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Browse'
+      OnClick = btnBrowseAesSQLiteDecClick
+    end
+    object btnBrowseAesSQLiteEnc: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 49.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Browse'
+      OnClick = btnBrowseAesSQLiteEncClick
+    end
+    object edtAesSQLiteEnc: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      TabStop = False
+      ReadOnly = True
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object odlAesSQLiteEnc: TOpenDialog
+        Left = 80
+        Top = 32
+      end
+    end
+    object edtAesSQLiteDec: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      TabStop = False
+      ReadOnly = True
+      Position.X = 8.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object odlAesSQLiteDec: TOpenDialog
+        Left = 136
+        Top = 56
+      end
+    end
+    object btnAesSQLiteEnc: TButton
+      Position.X = 403.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 54.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Encrypt'
+      OnClick = btnAesSQLiteEncClick
+    end
+    object btnAesSQLiteDec: TButton
+      Position.X = 403.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 54.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'Decrypt'
+      OnClick = btnAesSQLiteDecClick
+    end
+  end
+  object grbAesText: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 465.000000000000000000
+    Size.Height = 79.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'AES Text'
+    TabOrder = 1
+    object edtAesTextEnc: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object edtAesTextDec: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Position.X = 8.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object btnAesTextEnc: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Encrypt'
+      OnClick = btnAesTextEncClick
+    end
+    object btnAesTextDec: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Decrypt'
+      OnClick = btnAesTextDecClick
+    end
+  end
+  object grbAesFile: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 168.000000000000000000
+    Size.Width = 465.000000000000000000
+    Size.Height = 79.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'AES File'
+    TabOrder = 2
+    object btnBrowseAesFileDec: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 49.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Browse'
+      OnClick = btnBrowseAesFileDecClick
+    end
+    object btnBrowseAesFileEnc: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 49.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Browse'
+      OnClick = btnBrowseAesFileEncClick
+    end
+    object edtAesFileEnc: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      TabStop = False
+      ReadOnly = True
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object odlAesFileEnc: TOpenDialog
+        Left = 192
+        Top = 192
+      end
+    end
+    object edtAesFileDec: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      TabStop = False
+      ReadOnly = True
+      Position.X = 8.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object odlAesFileDec: TOpenDialog
+        Left = 248
+        Top = 216
+      end
+    end
+    object btnAesFileEnc: TButton
+      Position.X = 403.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 54.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Encrypt'
+      OnClick = btnAesFileEncClick
+    end
+    object btnAesFileDec: TButton
+      Position.X = 403.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 54.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'Decrypt'
+      OnClick = btnAesFileDecClick
+    end
+  end
+  object grbCRC32File: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 248.000000000000000000
+    Size.Width = 465.000000000000000000
+    Size.Height = 79.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'CRC32 File'
+    TabOrder = 3
+    object btnBrowseCRC32File: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Browse'
+      OnClick = btnBrowseCRC32FileClick
+    end
+    object edtCRC32File: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      TabStop = False
+      ReadOnly = True
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object odlCRC32File: TOpenDialog
+        Left = 304
+        Top = 272
+      end
+    end
+    object btnCRC32FileSum: TButton
+      Position.X = 352.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'CRC32'
+      OnClick = btnCRC32FileSumClick
+    end
+    object edtCRC32FileSum: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      ReadOnly = True
+      Position.X = 8.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 337.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end

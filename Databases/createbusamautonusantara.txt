@@ -1,0 +1,243 @@
+.\sqlite3.exe busamautonusantara.ald
+PRAGMA foreign_keys = OFF;
+
+DROP TABLE IF EXISTS sys_uom;
+DROP TABLE IF EXISTS sys_currency;
+DROP TABLE IF EXISTS sys_user;
+DROP TABLE IF EXISTS sys_city;
+DROP TABLE IF EXISTS sys_state;
+DROP TABLE IF EXISTS sys_country;
+DROP TABLE IF EXISTS sys_option;
+DROP TABLE IF EXISTS sys_print;
+DROP TABLE IF EXISTS sys_table;
+
+CREATE TABLE sys_table (
+tbid VARCHAR (50) NOT NULL,
+tbcode VARCHAR (4) NOT NULL,
+description VARCHAR (25) DEFAULT '',
+CONSTRAINT tbid_pkey PRIMARY KEY (tbid) ON CONFLICT ROLLBACK,
+CONSTRAINT tbcode_ukey UNIQUE (tbcode) ON CONFLICT ROLLBACK
+)
+WITHOUT ROWID;
+
+CREATE TABLE sys_print (
+prid VARCHAR (50) NOT NULL, /* PRBPP- */  
+prdocid VARCHAR (50) NOT NULL, 
+prdoc VARCHAR (50) NOT NULL, 
+pruser VARCHAR (20) DEFAULT '', 
+prdate TEXT (30) NOT NULL, 
+CONSTRAINT prid_pkey PRIMARY KEY (prid) ON CONFLICT ROLLBACK
+) 
+WITHOUT ROWID;
+
+CREATE TABLE sys_option (
+otid VARCHAR (50) NOT NULL, /* OTBPP- */ 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+otcode VARCHAR (20) NOT NULL, 
+description VARCHAR (50) DEFAULT '',  
+otvalue VARCHAR (20) DEFAULT '', 
+CONSTRAINT otid_pkey PRIMARY KEY (otid) ON CONFLICT ROLLBACK
+) 
+WITHOUT ROWID;
+
+CREATE TABLE sys_country (
+cnid VARCHAR (50) NOT NULL, /* CNBPP- */ 
+newuser VARCHAR (20) NOT NULL, 
+newdate TEXT (30) NOT NULL, 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+inactive BOOLEAN NOT NULL DEFAULT FALSE,   
+note TEXT DEFAULT '',  
+cncode CHARACTER (2) NOT NULL, 
+description VARCHAR (50) DEFAULT '',   
+CONSTRAINT cnid_pkey PRIMARY KEY (cnid) ON CONFLICT ROLLBACK
+) 
+WITHOUT ROWID;
+
+CREATE TABLE sys_state (
+stid VARCHAR (50) NOT NULL, /* STBPP- */ 
+newuser VARCHAR (20) NOT NULL, 
+newdate TEXT (30) NOT NULL, 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+inactive BOOLEAN NOT NULL DEFAULT FALSE,   
+note TEXT DEFAULT '',  
+stcode CHARACTER (2) NOT NULL, 
+description VARCHAR (50) DEFAULT '', 
+cnid VARCHAR (50) DEFAULT NULL, 
+CONSTRAINT stid_pkey PRIMARY KEY (stid) ON CONFLICT ROLLBACK, 
+CONSTRAINT cnid_fkey FOREIGN KEY (cnid) REFERENCES sys_country (cnid) ON DELETE RESTRICT ON UPDATE CASCADE
+) 
+WITHOUT ROWID;
+
+CREATE TABLE sys_city (
+ctid VARCHAR (50) NOT NULL, /* CTBPP- */ 
+newuser VARCHAR (20) NOT NULL, 
+newdate TEXT (30) NOT NULL, 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+inactive BOOLEAN NOT NULL DEFAULT FALSE,   
+note TEXT DEFAULT '',  
+ctcode CHARACTER (3) NOT NULL, 
+description VARCHAR (50) DEFAULT '', 
+stid VARCHAR (50) DEFAULT NULL, 
+CONSTRAINT ctid_pkey PRIMARY KEY (ctid) ON CONFLICT ROLLBACK, 
+CONSTRAINT stid_fkey FOREIGN KEY (stid) REFERENCES sys_state (stid) ON DELETE RESTRICT ON UPDATE CASCADE
+) 
+WITHOUT ROWID;
+
+CREATE TABLE sys_user (
+urid VARCHAR (50) NOT NULL, /* URBPP- */ 
+newuser VARCHAR (20) NOT NULL, 
+newdate TEXT (30) NOT NULL, 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+inactive BOOLEAN NOT NULL DEFAULT FALSE,   
+note TEXT DEFAULT '', 
+urtype TINYINT (1) NOT NULL DEFAULT 0, /*'0' COMMENT '0=user,1=admin,2=programmer'*/
+urname VARCHAR (20) NOT NULL, 
+urpassword VARCHAR (400) NOT NULL, 
+urfullname VARCHAR (50) NOT NULL,  
+jbcode CHARACTER (3) DEFAULT NULL, 
+dmcode CHARACTER (3) DEFAULT NULL,  
+kick BOOLEAN NOT NULL DEFAULT FALSE, 
+CONSTRAINT urid_pkey PRIMARY KEY (urid) ON CONFLICT ROLLBACK,
+CONSTRAINT urname_ukey UNIQUE (urname) ON CONFLICT ROLLBACK
+) 
+WITHOUT ROWID;
+
+CREATE TABLE sys_currency (
+cyid VARCHAR (50) NOT NULL, /* CYBPP- */ 
+newuser VARCHAR (20) NOT NULL, 
+newdate TEXT (30) NOT NULL, 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+inactive BOOLEAN NOT NULL DEFAULT FALSE,   
+note TEXT DEFAULT '',  
+cycode CHARACTER (3) NOT NULL, 
+description VARCHAR (50) DEFAULT '',   
+CONSTRAINT cyid_pkey PRIMARY KEY (cyid) ON CONFLICT ROLLBACK
+) 
+WITHOUT ROWID;
+
+CREATE TABLE sys_uom (
+umid VARCHAR (50) NOT NULL, /* UMBPP- */ 
+newuser VARCHAR (20) NOT NULL, 
+newdate TEXT (30) NOT NULL, 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+inactive BOOLEAN NOT NULL DEFAULT FALSE,   
+note TEXT DEFAULT '',  
+umcode VARCHAR (10) NOT NULL, 
+description VARCHAR (50) DEFAULT '',   
+CONSTRAINT umid_pkey PRIMARY KEY (umid) ON CONFLICT ROLLBACK
+) 
+WITHOUT ROWID;
+
+PRAGMA foreign_keys = ON;
+VACUUM;
+.quit
+
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-1', 'TB', 'Table');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-2', 'PR', 'Print');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-3', 'OT', 'Option');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-4', 'CN', 'Country');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-5', 'ST', 'State');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-6', 'CT', 'City');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-7', 'UR', 'UserRegister');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-8', 'CY', 'Currency');
+INSERT OR IGNORE INTO sys_table VALUES ('TBBPP-9', 'UM', 'UnitofMeasurement');
+
+INSERT OR IGNORE INTO sys_option VALUES ('OTBPP-1', 'aldian', datetime('now', 'localtime'), 'myversion', 'Version', '1');
+INSERT OR IGNORE INTO sys_option VALUES ('OTBPP-2', 'aldian', datetime('now', 'localtime'), 'mymessage', 'Message Server', 'Version 1.0.1');
+INSERT OR IGNORE INTO sys_option VALUES ('OTBPP-3', 'aldian', datetime('now', 'localtime'), 'maintenance', 'Maintenance Server', '0');
+INSERT OR IGNORE INTO sys_option VALUES ('OTBPP-4', 'aldian', datetime('now', 'localtime'), 'currency', 'Currency', 'IDR');
+INSERT OR IGNORE INTO sys_option VALUES ('OTBPP-5', 'aldian', datetime('now', 'localtime'), 'vatpercent', 'VAT Percent', '11');
+INSERT OR IGNORE INTO sys_option VALUES ('OTBPP-6', 'aldian', datetime('now', 'localtime'), 'precisionother', 'Other Precision', '2');
+
+INSERT OR IGNORE INTO sys_country VALUES ('CNBPP-1', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'ID', 'Indonesia');
+
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-1', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'AC', 'Aceh', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-2', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SU', 'Sumatera Utara', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-3', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SB', 'Sumatera Barat', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-4', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'RI', 'Riau', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-5', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'JA', 'Jambi', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-6', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SS', 'Sumatera Selatan', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-7', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BE', 'Bengkulu', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-8', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'LA', 'Lampung', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-9', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BB', 'Kepulauan Bangka Belitung', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-10', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'KR', 'Kepulauan Riau', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-11', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'JK', 'Daerah Khusus Ibukota Jakarta', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-12', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'JB', 'Jawa Barat', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-13', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'JT', 'Jawa Tengah', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-14', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'YO', 'Daerah Istimewa Yogyakarta', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-15', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'JI', 'Jawa Timur', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-16', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BT', 'Banten', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-17', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BA', 'Bali', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-18', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'NB', 'Nusa Tenggara Barat', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-19', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'NT', 'Nusa Tenggara Timur', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-20', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'KB', 'Kalimantan Barat', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-21', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'KT', 'Kalimantan Tengah', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-22', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'KS', 'Kalimantan Selatan', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-23', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'KI', 'Kalimantan Timur', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-24', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SA', 'Sulawesi Utara', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-25', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'ST', 'Sulawesi Tengah', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-26', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SN', 'Sulawesi Selatan', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-27', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SG', 'Sulawesi Tenggara', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-28', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'GO', 'Gorontalo', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-29', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SR', 'Sulawesi Barat', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-30', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'MA', 'Maluku', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-31', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'MU', 'Maluku Utara', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-32', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'PA', 'Papua', 'CNBPP-1');
+INSERT OR IGNORE INTO sys_state VALUES ('STBPP-33', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'PB', 'Papua Barat', 'CNBPP-1');
+
+INSERT OR IGNORE INTO sys_city VALUES ('CTBPP-1', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BPP', 'Balikpapan', 'STBPP-23');
+INSERT OR IGNORE INTO sys_city VALUES ('CTBPP-2', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SMR', 'Samarinda', 'STBPP-23');
+
+INSERT OR IGNORE INTO sys_user VALUES ('URBPP-1', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), true, '', '2', 'aldian', 'FRtJxtiBYDGP4RLwT3pZ3A==', 'Aldian Abdilla', NULL, NULL, true);
+INSERT OR IGNORE INTO sys_user VALUES ('URBPP-2', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', '1', 'khahar', 'mVh1ujZTyHvVIlMzQaqJMQ==', 'Khahar Syahruddin', NULL, NULL, false);
+INSERT OR IGNORE INTO sys_user VALUES ('URBPP-3', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', '0', 'training', 'w+wEHM9Ul6QNN5vRxggjuw==', 'Training System', NULL, NULL, false);
+
+INSERT OR IGNORE INTO sys_currency VALUES ('CYBPP-1', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'IDR', 'RUPIAH');
+INSERT OR IGNORE INTO sys_currency VALUES ('CYBPP-2', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'CNY', 'YUAN');
+INSERT OR IGNORE INTO sys_currency VALUES ('CYBPP-3', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'EUR', 'EURO');
+INSERT OR IGNORE INTO sys_currency VALUES ('CYBPP-4', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SGD', 'SINGAPORE DOLLAR');
+INSERT OR IGNORE INTO sys_currency VALUES ('CYBPP-5', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'USD', 'US DOLLAR');
+INSERT OR IGNORE INTO sys_currency VALUES ('CYBPP-6', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'JPY', 'YEN');
+
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-1', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'APL', 'Ampul');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-2', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'ASSY', 'Assy');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-3', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BAG', 'Bag');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-4', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BOOK', 'Book');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-5', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BOX', 'Box');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-6', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'BT', 'Bottle');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-7', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'CAN', 'Canister');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-8', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'CM', 'Centimeter');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-9', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'CYL', 'Cylinder');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-10', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'DR', 'Drum');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-11', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'DZ', 'Dozen');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-12', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'EA', 'Each');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-13', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'EKOR', 'Ekor');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-14', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'GL', 'Gallon');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-15', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'IKAT', 'Ikat');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-16', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'JNT', 'Joint');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-17', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'KG', 'Kilogram');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-18', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'LENGTH', 'Length');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-19', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'LOT', 'Lot');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-20', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'M3', 'Cubic Meter');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-21', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'MTR', 'Meter');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-22', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'PACK', 'Pack');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-23', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'PAIL', 'Pail');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-24', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'PCS', 'Pieces');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-25', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'PR', 'Pair');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-26', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'RIM', 'Rim');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-27', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'RL', 'Roll');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-28', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SACK', 'Sack');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-29', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SET', 'Set');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-30', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SHT', 'Sheet');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-31', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'SSR', 'Sisir');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-32', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'STRIP', 'Strip');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-33', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'TB', 'Tube');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-34', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'TON', 'Tonage');
+INSERT OR IGNORE INTO sys_uom VALUES ('UMBPP-35', 'aldian', datetime('now', 'localtime'), 'aldian', datetime('now', 'localtime'), false, '', 'UNIT', 'Unit');

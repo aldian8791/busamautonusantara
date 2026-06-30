@@ -1,0 +1,215 @@
+object fChangePwd: TfChangePwd
+  Left = 0
+  Top = 0
+  Caption = 'Change Password'
+  ClientHeight = 178
+  ClientWidth = 400
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object rtlChangePwd: TRectangle
+    Align = Client
+    Fill.Kind = Gradient
+    Fill.Gradient.Points = <
+      item
+        Color = xFFF8BCA5
+        Offset = 0.000000000000000000
+      end
+      item
+        Color = claWhite
+        Offset = 1.000000000000000000
+      end>
+    Fill.Gradient.StartPosition.X = 0.500000000000000000
+    Fill.Gradient.StartPosition.Y = 1.000000000000000000
+    Fill.Gradient.StopPosition.X = 0.499999970197677600
+    Fill.Gradient.StopPosition.Y = 0.000000000000000000
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Size.Width = 400.000000000000000000
+    Size.Height = 178.000000000000000000
+    Size.PlatformDefault = False
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    OnResize = rtlChangePwdResize
+    object lytHeader: TLayout
+      Align = Top
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 390.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object btnClose: TTMSFNCButton
+        ImageAlign = Center
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'close_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 22.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Right
+        Position.X = 368.000000000000000000
+        TabOrder = 0
+        OnClick = btnCloseClick
+      end
+      object Label1: TLabel
+        Align = Center
+        StyledSettings = [Family, FontColor]
+        Margins.Left = 22.000000000000000000
+        Size.Width = 109.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'Change Password'
+        TabOrder = 1
+        TabStop = False
+      end
+    end
+    object sdeChangePwd: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.300000011920929000
+      Opacity = 0.600000023841857900
+      ShadowColor = claBlack
+    end
+    object edtCurrentPwd: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.X = 110.000000000000000000
+      Position.Y = 45.000000000000000000
+      Size.Width = 285.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnKeyDown = edtCurrentPwdKeyDown
+      object PasswordEditButton1: TPasswordEditButton
+        Touch.InteractiveGestures = [LongTap]
+        CanFocus = False
+        Cursor = crArrow
+        Size.Width = 28.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+    end
+    object Label2: TLabel
+      Position.X = 5.000000000000000000
+      Position.Y = 45.000000000000000000
+      Size.Width = 102.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Current Password'
+      TabOrder = 7
+    end
+    object linChangePwd: TLine
+      LineType = Top
+      Position.X = 5.000000000000000000
+      Position.Y = 73.000000000000000000
+      Size.Width = 391.000000000000000000
+      Size.Height = 1.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lytAction: TLayout
+      Align = Bottom
+      Position.X = 5.000000000000000000
+      Position.Y = 151.000000000000000000
+      Size.Width = 390.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      object btnClear: TTMSFNCButton
+        ImageAlign = FitLeft
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'clear_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 65.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Left
+        TabOrder = 1
+        Text = 'Clear'
+        OnClick = btnClearClick
+      end
+      object btnOK: TTMSFNCButton
+        ImageAlign = FitLeft
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'ok_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 65.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Right
+        Position.X = 325.000000000000000000
+        TabOrder = 0
+        Text = 'OK'
+        OnClick = btnOKClick
+      end
+    end
+    object Label3: TLabel
+      Position.X = 5.000000000000000000
+      Position.Y = 81.000000000000000000
+      Size.Width = 102.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'New Password'
+      TabOrder = 6
+    end
+    object edtNewPwd: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Position.X = 110.000000000000000000
+      Position.Y = 81.000000000000000000
+      Size.Width = 285.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnKeyDown = edtNewPwdKeyDown
+      object PasswordEditButton2: TPasswordEditButton
+        Touch.InteractiveGestures = [LongTap]
+        CanFocus = False
+        Cursor = crArrow
+        Size.Width = 28.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+    end
+    object Label4: TLabel
+      Position.X = 5.000000000000000000
+      Position.Y = 105.000000000000000000
+      Size.Width = 102.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Confirm Password'
+      TabOrder = 5
+    end
+    object edtConfirmPwd: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Position.X = 110.000000000000000000
+      Position.Y = 105.000000000000000000
+      Size.Width = 285.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnKeyDown = edtConfirmPwdKeyDown
+      object PasswordEditButton3: TPasswordEditButton
+        Touch.InteractiveGestures = [LongTap]
+        CanFocus = False
+        Cursor = crArrow
+        Size.Width = 28.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+    end
+  end
+end

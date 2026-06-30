@@ -1,0 +1,22 @@
+.\sqlite3.exe usrsetting.ald
+PRAGMA foreign_keys = OFF;
+
+DROP TABLE IF EXISTS riftenset;
+
+CREATE TABLE riftenset ( 
+riftensetid VARCHAR (50) NOT NULL, 
+edituser VARCHAR (20) NOT NULL, 
+editdate TEXT (30) NOT NULL, 
+riftendesc VARCHAR (30) NOT NULL,  /* ostheme: 0=SystemMode, 1=LightMode, 2=DarkMode */ 
+riftenvalue VARCHAR (50) DEFAULT '', 
+CONSTRAINT riftensetid_pkey PRIMARY KEY (riftensetid) ON CONFLICT ROLLBACK, 
+CONSTRAINT riftendesc_ukey UNIQUE (riftendesc) ON CONFLICT ROLLBACK 
+) 
+WITHOUT ROWID;
+
+PRAGMA foreign_keys = ON;
+VACUUM;
+.quit
+
+INSERT OR IGNORE INTO riftenset VALUES ('1', 'aldian', datetime('now', 'localtime'), 'windowmode', '0');
+INSERT OR IGNORE INTO riftenset VALUES ('2', 'aldian', datetime('now', 'localtime'), 'ostheme', '0');

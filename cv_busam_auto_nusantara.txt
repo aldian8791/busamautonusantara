@@ -1,0 +1,16 @@
+# Tabel master user
+
+# Tabel master customer
+# Tabel master vendor
+# Tabel master kota
+# Tabel master provinsi
+# Tabel master negara
+# Tabel master mata uang
+# Tabel master satuan
+# Tabel transaksi quotation
+# Tabel transaksi invoice
+# Tabel transaksi surat jalan
+# Tabel transaksi stok
+# Tabel transaksi in
+# Tabel transaksi out
+# Tabel transaksi konversi

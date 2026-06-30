@@ -1,0 +1,486 @@
+object fCountryInput: TfCountryInput
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 480
+  ClientWidth = 1024
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object lytCountryInput: TLayout
+    Align = Client
+    Size.Width = 1024.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object lytTool: TLayout
+      Align = Top
+      Size.Width = 1024.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object btnNew: TTMSFNCButton
+        ImageAlign = FitLeft
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'new2_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 75.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Left
+        Margins.Left = 2.000000000000000000
+        Position.X = 2.000000000000000000
+        TabOrder = 0
+        Text = 'New'
+        OnClick = btnNewClick
+      end
+      object btnCancel: TTMSFNCButton
+        ImageAlign = FitLeft
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'cancel_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 75.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Left
+        Margins.Left = 2.000000000000000000
+        Position.X = 79.000000000000000000
+        TabOrder = 1
+        Text = 'Cancel'
+        OnClick = btnCancelClick
+      end
+      object btnSave: TTMSFNCButton
+        ImageAlign = FitLeft
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'save_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 75.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Left
+        Margins.Left = 2.000000000000000000
+        Position.X = 156.000000000000000000
+        TabOrder = 2
+        Text = 'Save'
+        OnClick = btnSaveClick
+      end
+      object btnDelete: TTMSFNCButton
+        ImageAlign = FitLeft
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'delete_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 75.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Left
+        Margins.Left = 2.000000000000000000
+        Position.X = 233.000000000000000000
+        TabOrder = 3
+        Text = 'Delete'
+        OnClick = btnDeleteClick
+      end
+      object Layout1: TLayout
+        Align = Center
+        Size.Width = 196.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        TabStop = False
+        object lblAction: TLabel
+          Align = Left
+          StyledSettings = [Family, Style]
+          Size.Width = 45.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.FontColor = claDarkgreen
+          TextSettings.HorzAlign = Trailing
+          Text = 'NEW'
+          TabOrder = 0
+          TabStop = False
+        end
+        object lblCaption: TLabel
+          Align = Client
+          StyledSettings = [Family, Style, FontColor]
+          Margins.Left = 4.000000000000000000
+          Size.Width = 77.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'COUNTRY'
+          TabOrder = 5
+          TabStop = False
+        end
+        object lblDelete: TLabel
+          Align = Right
+          StyledSettings = [Family, Style]
+          Position.X = 126.000000000000000000
+          Size.Width = 70.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.FontColor = claDarkred
+          Text = 'DELETED'
+          TabOrder = 6
+          TabStop = False
+        end
+      end
+      object lytNew: TLayout
+        Align = Right
+        Margins.Right = 2.000000000000000000
+        Position.X = 847.000000000000000000
+        Size.Width = 175.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        TabStop = False
+        object Layout3: TLayout
+          Align = Left
+          Size.Width = 55.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          TabStop = False
+          object Label1: TLabel
+            Align = Top
+            Size.Width = 55.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'NewUser'
+            TabOrder = 1
+            TabStop = False
+          end
+          object Label2: TLabel
+            Align = Bottom
+            Position.Y = 11.000000000000000000
+            Size.Width = 55.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'NewDate'
+            TabOrder = 0
+            TabStop = False
+          end
+        end
+        object Layout4: TLayout
+          Align = Client
+          Size.Width = 120.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          TabStop = False
+          object lblNewUser: TLabel
+            Align = Top
+            Size.Width = 120.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'administrator'
+            TabOrder = 1
+            TabStop = False
+          end
+          object lblNewDate: TLabel
+            Align = Bottom
+            Position.Y = 11.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = '99-99-9999 99:99:99'
+            TabOrder = 0
+            TabStop = False
+          end
+        end
+      end
+    end
+    object lytNumber: TLayout
+      Align = Top
+      Position.Y = 22.000000000000000000
+      Size.Width = 1024.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object lytEdit: TLayout
+        Align = Right
+        Margins.Right = 2.000000000000000000
+        Position.X = 847.000000000000000000
+        Size.Width = 175.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        TabStop = False
+        object Layout7: TLayout
+          Align = Left
+          Size.Width = 55.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          TabStop = False
+          object Label5: TLabel
+            Align = Top
+            Size.Width = 55.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'EditUser'
+            TabOrder = 1
+            TabStop = False
+          end
+          object Label6: TLabel
+            Align = Bottom
+            Position.Y = 11.000000000000000000
+            Size.Width = 55.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'EditDate'
+            TabOrder = 0
+            TabStop = False
+          end
+        end
+        object Layout8: TLayout
+          Align = Client
+          Size.Width = 120.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          TabStop = False
+          object lblEditUser: TLabel
+            Align = Top
+            Size.Width = 120.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'administrator'
+            TabOrder = 1
+            TabStop = False
+          end
+          object lblEditDate: TLabel
+            Align = Bottom
+            Position.Y = 11.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 11.000000000000000000
+            Size.PlatformDefault = False
+            Text = '99-99-9999 99:99:99'
+            TabOrder = 0
+            TabStop = False
+          end
+        end
+      end
+      object lblNumberID: TLabel
+        Align = Left
+        Margins.Left = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Size.Width = 51.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Number'
+        TabOrder = 7
+        TabStop = False
+      end
+      object edtNumberID: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Left
+        TabOrder = 0
+        Position.X = 58.000000000000000000
+        Margins.Left = 2.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = 'Document ID'
+      end
+    end
+    object pclInput: TTMSFNCPageControl
+      Align = Client
+      Size.Width = 1024.000000000000000000
+      Size.Height = 436.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TabAppearance.Fill.Color = xFFF6F8FC
+      TabAppearance.DownFill.Color = xFFA8BCF0
+      TabAppearance.DownStroke.Color = xFF2D9BEF
+      TabAppearance.HoverFill.Color = xFFEEF2F9
+      TabAppearance.HoverStroke.Color = xFF2D9BEF
+      TabAppearance.TextSpacing = 0.000000000000000000
+      TabAppearance.Shape = tsPyramidRight
+      TabAppearance.TextColor = xFF7A7A7A
+      TabAppearance.ActiveTextColor = xFF454545
+      TabAppearance.HoverTextColor = xFF7A7A7A
+      TabAppearance.DownTextColor = xFF454545
+      TabAppearance.ShowFocus = False
+      TabAppearance.CloseStroke.Width = 2.000000000000000000
+      TabAppearance.CloseDownStroke.Width = 2.000000000000000000
+      TabAppearance.CloseHoverStroke.Width = 2.000000000000000000
+      TabAppearance.BadgeFont.Color = claDarkred
+      TabAppearance.BadgeFont.StyleExt = {00070000000000000004000000}
+      ButtonAppearance.CloseIcon.PNG = {
+        89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+        F80000000473424954080808087C08648800000018494441544889EDC1010100
+        00008090FEAFEE080A0080AA0109180001CEEE253E0000000049454E44AE4260
+        82}
+      ButtonAppearance.CloseIcon.SVG = {
+        3C7376672077696474683D223234707822206865696768743D22323470782220
+        76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+        2F2F7777772E77332E6F72672F323030302F737667222066696C6C3D226E6F6E
+        65223E3C70617468207374726F6B653D2263757272656E74436F6C6F72222073
+        74726F6B652D6C696E656361703D22726F756E6422207374726F6B652D6C696E
+        656A6F696E3D22726F756E6422207374726F6B652D77696474683D2232222064
+        3D224D3132203132203720376D352035203520356D2D352D3520352D356D2D35
+        20352D352035222F3E3C2F7376673E0D0A}
+      ButtonAppearance.InsertIcon.PNG = {
+        89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+        F80000000473424954080808087C08648800000018494441544889EDC1010100
+        00008090FEAFEE080A0080AA0109180001CEEE253E0000000049454E44AE4260
+        82}
+      ButtonAppearance.InsertIcon.SVG = {
+        3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C73766720786D6C6E
+        733D22687474703A2F2F7777772E77332E6F72672F323030302F737667222078
+        6D6C6E733A786C696E6B3D22687474703A2F2F7777772E77332E6F72672F3139
+        39392F786C696E6B222077696474683D223234707822206865696768743D2232
+        347078222076696577426F783D22302030203234203234222076657273696F6E
+        3D22312E31223E0D0A093C672069643D227375726661636531223E0D0A09093C
+        70617468207374796C653D22207374726F6B653A6E6F6E653B66696C6C2D7275
+        6C653A6E6F6E7A65726F3B66696C6C3A7267622830252C30252C3025293B6669
+        6C6C2D6F7061636974793A313B2220643D224D203132203620432031322E3431
+        3430363220362031322E373520362E3333353933382031322E373520362E3735
+        204C2031322E37352031312E3235204C2031372E32352031312E323520432031
+        372E3636343036322031312E32352031382031312E3538353933382031382031
+        3220432031382031322E3431343036322031372E3636343036322031322E3735
+        2031372E32352031322E3735204C2031322E37352031322E3735204C2031322E
+        37352031372E323520432031322E37352031372E3636343036322031322E3431
+        3430363220313820313220313820432031312E3538353933382031382031312E
+        32352031372E3636343036322031312E32352031372E3235204C2031312E3235
+        2031322E3735204C20362E37352031322E3735204320362E3333353933382031
+        322E373520362031322E3431343036322036203132204320362031312E353835
+        39333820362E3333353933382031312E323520362E37352031312E3235204C20
+        31312E32352031312E3235204C2031312E323520362E373520432031312E3235
+        20362E3333353933382031312E35383539333820362031322036205A204D2031
+        32203620222F3E0D0A093C2F673E0D0A3C2F7376673E0D0A}
+      ButtonAppearance.TabListIcon.PNG = {
+        89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+        F80000000473424954080808087C08648800000018494441544889EDC1010100
+        00008090FEAFEE080A0080AA0109180001CEEE253E0000000049454E44AE4260
+        82}
+      ButtonAppearance.TabListIcon.SVG = {
+        3C7376672077696474683D223234707822206865696768743D22323470782220
+        76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+        2F2F7777772E77332E6F72672F323030302F737667223E3C7061746820737472
+        6F6B653D2263757272656E74436F6C6F7222207374726F6B652D6C696E656361
+        703D22726F756E6422207374726F6B652D6C696E656A6F696E3D22726F756E64
+        22207374726F6B652D77696474683D22322220643D226D31372031302D352035
+        2D352D35222066696C6C3D226E6F6E65222F3E3C2F7376673E0D0A}
+      ButtonAppearance.ScrollNextIcon.PNG = {
+        89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+        F80000000473424954080808087C08648800000018494441544889EDC1010100
+        00008090FEAFEE080A0080AA0109180001CEEE253E0000000049454E44AE4260
+        82}
+      ButtonAppearance.ScrollNextIcon.SVG = {
+        3C7376672077696474683D223234707822206865696768743D22323470782220
+        76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+        2F2F7777772E77332E6F72672F323030302F737667223E3C706174682066696C
+        6C3D226E6F6E6522207374726F6B653D2263757272656E74436F6C6F72222073
+        74726F6B652D6C696E656361703D22726F756E6422207374726F6B652D6C696E
+        656A6F696E3D22726F756E6422207374726F6B652D77696474683D2232222064
+        3D226D31302037203520352D352035222F3E3C2F7376673E0D0A}
+      ButtonAppearance.ScrollPreviousIcon.PNG = {
+        89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+        F80000000473424954080808087C08648800000018494441544889EDC1010100
+        00008090FEAFEE080A0080AA0109180001CEEE253E0000000049454E44AE4260
+        82}
+      ButtonAppearance.ScrollPreviousIcon.SVG = {
+        3C7376672077696474683D223234707822206865696768743D22323470782220
+        76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+        2F2F7777772E77332E6F72672F323030302F737667223E3C706174682066696C
+        6C3D226E6F6E6522207374726F6B653D2263757272656E74436F6C6F72222073
+        74726F6B652D6C696E656361703D22726F756E6422207374726F6B652D6C696E
+        656A6F696E3D22726F756E6422207374726F6B652D77696474683D2232222064
+        3D226D313420372D35203520352035222F3E3C2F7376673E0D0A}
+      Layout.Position = tlpBottom
+      Pages = <
+        item
+          Text = 'General'
+          Bitmaps = <>
+          DisabledBitmaps = <>
+          UseDefaultAppearance = True
+        end>
+      object tbsGeneral: TTMSFNCPageControlContainer
+        Align = Client
+        Margins.Bottom = 21.000000000000000000
+        Size.Width = 1024.000000000000000000
+        Size.Height = 415.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        TabStop = False
+        PageIndex = 0
+        IsActive = True
+        object Label4: TLabel
+          Position.X = 5.000000000000000000
+          Position.Y = 32.000000000000000000
+          Size.Width = 74.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Description'
+          TabOrder = 6
+          TabStop = False
+        end
+        object edtDescription: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 1
+          Position.X = 82.000000000000000000
+          Position.Y = 32.000000000000000000
+          Size.Width = 250.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Input Description'
+        end
+        object edtCode: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 0
+          Position.X = 82.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Code'
+        end
+        object mmoNote: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          TextPrompt = 'This Note is not printed'
+          Position.X = 5.000000000000000000
+          Position.Y = 80.000000000000000000
+          Size.Width = 327.000000000000000000
+          Size.Height = 114.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Viewport.Width = 323.000000000000000000
+          Viewport.Height = 110.000000000000000000
+        end
+        object Label12: TLabel
+          Position.X = 5.000000000000000000
+          Position.Y = 56.000000000000000000
+          Size.Width = 74.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Note'
+          TabOrder = 4
+          TabStop = False
+        end
+        object Label13: TLabel
+          Position.X = 5.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 74.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Code'
+          TabOrder = 5
+          TabStop = False
+        end
+      end
+    end
+  end
+end

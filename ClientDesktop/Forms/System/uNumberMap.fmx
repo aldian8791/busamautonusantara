@@ -1,0 +1,104 @@
+object fNumberMap: TfNumberMap
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 293
+  ClientWidth = 363
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object rtlNumberMap: TRectangle
+    Align = Client
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Size.Width = 363.000000000000000000
+    Size.Height = 293.000000000000000000
+    Size.PlatformDefault = False
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object lytHeader: TLayout
+      Align = Top
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 353.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object btnClose: TTMSFNCButton
+        ImageAlign = Center
+        BitmapContainer = fMain.bctMain
+        BitmapName = 'close_enable'
+        BitmapSize = 20
+        ShowImage = True
+        Size.Width = 22.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Align = Right
+        Position.X = 331.000000000000000000
+        TabOrder = 0
+        OnClick = btnCloseClick
+      end
+      object Label1: TLabel
+        Align = Center
+        StyledSettings = [Family, FontColor]
+        Margins.Left = 22.000000000000000000
+        Size.Width = 109.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'Number Map'
+        TabOrder = 1
+        TabStop = False
+      end
+    end
+    object grdList: TTMSFNCDataGrid
+      Align = Client
+      Size.Width = 353.000000000000000000
+      Size.Height = 261.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      OnEnter = grdListEnter
+      ShowAcceleratorChar = False
+      Footer.Bar.Buttons = <>
+      Header.Bar.Buttons = <>
+      Columns = <
+        item
+          Header = 'ID'
+          Width = 70.000000000000000000
+        end
+        item
+          Header = 'Name'
+          Width = 250.000000000000000000
+        end
+        item
+          Header = 'Joined'
+          Width = 100.000000000000000000
+        end
+        item
+          Header = 'Status'
+          Width = 100.000000000000000000
+        end>
+      FilterActions = <>
+      OnBeforeSortColumn = grdListBeforeSortColumn
+      OnCellClick = grdListCellClick
+      OnGetCellData = grdListGetCellData
+      OnGetCellLayout = grdListGetCellLayout
+      OnGetInplaceEditorProperties = grdListGetInplaceEditorProperties
+    end
+    object sdeNumberMap: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.300000011920929000
+      Opacity = 0.600000023841857900
+      ShadowColor = claBlack
+    end
+  end
+end
